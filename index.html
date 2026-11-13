@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>合作还是背叛 · 囚徒困境演化实验场</title>
+  <meta name="description" content="一个可交互的知识讲解页面：通过模拟重复囚徒困境的长期演化，探索博弈策略的兴衰规律。" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- ================= 页头 ================= -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="#top">
+        <span class="logo-mark" aria-hidden="true"></span>
+        <span class="logo-text">演化实验场<small>Evolution Arena</small></span>
+      </a>
+      <nav class="site-nav" aria-label="页面导航">
+        <a href="#knowledge">先学原理</a>
+        <a href="#lab">模拟实验台</a>
+        <a href="#strategies">策略图鉴</a>
+        <a href="#play">亲自上场</a>
+        <a href="#insights">演化启示</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ================= 首屏 ================= -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="kicker">知识讲解 × 交互模拟</p>
+          <h1>合作，还是背叛？<br />让 3000 代演化替你回答。</h1>
+          <p class="lead">
+            囚徒困境里，<strong class="t-red">背叛</strong>永远比<strong class="t-teal">合作</strong>「更划算」——那为什么现实世界中合作无处不在？
+            这不是道德问题，而是<strong>时间问题</strong>。在这个实验场里，七种经典博弈策略将被扔进同一个生态，
+            每一代互相角逐、繁衍、灭绝，你可以亲眼看着「长期」如何惩罚短视、奖励互惠。
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#lab">开始模拟实验</a>
+            <a class="btn btn-ghost" href="#knowledge">先花 3 分钟学原理</a>
+          </div>
+          <ul class="hero-meta">
+            <li>纯前端 · 无依赖 · 双击即玩</li>
+            <li>复制动态 · 锦标赛制</li>
+            <li>源自 Axelrod 1980 经典实验</li>
+          </ul>
+        </div>
+        <div class="hero-panel" aria-hidden="true">
+          <div class="payoff-mini">
+            <table class="payoff-table payoff-table--mini">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col" class="col-coop">对方合作</th>
+                  <th scope="col" class="col-defect">对方背叛</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row" class="row-coop">你合作</th>
+                  <td class="cell-win"><b>+3</b> / +3</td>
+                  <td class="cell-lose"><b>0</b> / +5</td>
+                </tr>
+                <tr>
+                  <th scope="row" class="row-defect">你背叛</th>
+                  <td class="cell-tempt"><b>+5</b> / 0</td>
+                  <td class="cell-mutual"><b>+1</b> / +1</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="payoff-caption">收益矩阵：加粗数字是你的得分</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 知识讲解 ================= -->
+    <section id="knowledge" class="section">
+      <div class="container">
+        <header class="section-head">
+          <p class="kicker">Part 1 · 知识讲解</p>
+          <h2>三分钟看懂囚徒困境</h2>
+        </header>
+
+        <div class="know-grid">
+          <article class="card">
+            <h3>1. 什么叫「困境」？</h3>
+            <p>
+              两个囚徒分别审讯：都沉默各判 1 年；一个招供、一个沉默，招供者当场释放、沉默者判 8 年；都招供各判 5 年。
+              对每个人来说，<em>无论对方怎么选，招供（背叛）都是更好的选项</em>——于是理性推导出双输的结局。
+            </p>
+            <p>
+              博弈论把这叫做<strong>占优策略</strong>导致的非最优均衡：<em>个体理性 ≠ 集体理性</em>。
+              环境污染、价格战、军备竞赛、内卷——都是它的变体。
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>2. 背叛的解药：重复</h3>
+            <p>
+              现实里的博弈很少「只玩一次」。当双方预期<strong>还会再见面</strong>，背叛的代价就出现了：
+              它换来眼前 5 分，却可能毁掉未来每一轮 3 分的合作收益。
+            </p>
+            <p>
+              1980 年，政治学家 Robert Axelrod 邀请全球博弈学者提交程序进行循环赛，
+              冠军不是任何复杂算计，而是 Anatol Rapoport 提交的
+              <strong>极简策略「以牙还牙」</strong>：先合作，然后照抄对方上一轮的动作。
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>3. 长期演化怎么看？</h3>
+            <p>
+              我们不再问「哪个策略单局得分高」，而是问：<strong>哪种行为方式会在种群里扩散？</strong>
+              本页面采用的「复制动态」规则是：
+            </p>
+            <blockquote>
+              得分高于群体平均的策略，下一代言行者比例上升；低于平均的，逐渐消失。
+            </blockquote>
+            <p>
+              这与生物演化同构——收益即适应度，策略即「基因」。短期聪明的打法，可能正是长期自杀的打法。
+            </p>
+          </article>
+        </div>
+
+        <div class="term-grid">
+          <div class="term"><b>纳什均衡</b><span>无人愿意单方面改变选择的稳定状态。单次囚徒困境中是「互相背叛」。</span></div>
+          <div class="term"><b>ESS 演化稳定策略</b><span>一旦占据种群主导地位，就无法被少数入侵者撼动的策略。</span></div>
+          <div class="term"><b>互惠利他</b><span>「这次我帮你，下次你帮我」的合作机制，需要重复相遇才能成立。</span></div>
+          <div class="term"><b>复制动态</b><span>按适应度比例繁殖下一代的经典演化方程，本页模拟的核心规则。</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 模拟实验台 ================= -->
+    <section id="lab" class="section section--lab">
+      <div class="container">
+        <header class="section-head">
+          <p class="kicker">Part 2 · 模拟实验台</p>
+          <h2>把它扔进生态，看看谁能活到最后</h2>
+          <p class="section-sub">
+            调好初始种群与规则，按下开始。每一代：所有策略两两对局 → 按得分换算适应度 → 按适应度繁衍下一代。
+          </p>
+        </header>
+
+        <div class="lab-grid">
+          <!-- 控制台 -->
+          <aside class="lab-controls card">
+            <h3>实验参数</h3>
+
+            <div class="ctrl-group">
+              <div class="ctrl-title">初始种群配比 <span class="ctrl-note">开始时自动归一化</span></div>
+              <div id="shareSliders" class="share-sliders"></div>
+              <div class="preset-row">
+                <button class="preset" data-preset="equal">七雄并立</button>
+                <button class="preset" data-preset="invasion">掠夺者入侵</button>
+                <button class="preset" data-preset="tft-vs-alld">以牙还牙 vs 掠夺者</button>
+                <button class="preset" data-preset="tournament">复刻 1980 锦标赛</button>
+              </div>
+            </div>
+
+            <div class="ctrl-group">
+              <div class="ctrl-title">收益矩阵 <span id="payWarn" class="warn" hidden>需满足 T &gt; R &gt; P &gt; S</span></div>
+              <div class="pay-inputs">
+                <label>诱惑 T <input id="payT" type="number" value="5" min="1" max="20" step="0.5" /></label>
+                <label>合作 R <input id="payR" type="number" value="3" min="1" max="20" step="0.5" /></label>
+                <label>互叛 P <input id="payP" type="number" value="1" min="0" max="20" step="0.5" /></label>
+                <label>被剥 S <input id="payS" type="number" value="0" min="-5" max="20" step="0.5" /></label>
+              </div>
+              <p class="ctrl-hint">经典设定 T=5 R=3 P=1 S=0；当 <em>2R &gt; T</em> 时，合作的长期收益才能压倒诱惑。</p>
+            </div>
+
+            <div class="ctrl-group">
+              <div class="ctrl-title">环境</div>
+              <label class="range-row">每场对局轮数 <output id="roundsVal">100</output>
+                <input id="roundsRange" type="range" min="10" max="300" step="10" value="100" />
+              </label>
+              <label class="range-row">执行噪声（出招失手率）<output id="noiseVal">2%</output>
+                <input id="noiseRange" type="range" min="0" max="20" step="1" value="2" />
+              </label>
+              <label class="range-row">模拟速度（代 / 帧）<output id="speedVal">8</output>
+                <input id="speedRange" type="range" min="1" max="40" step="1" value="8" />
+              </label>
+              <label class="check-row">
+                <input id="extinctCheck" type="checkbox" />
+                <span>允许策略灭绝（不保留 0.3% 火种）</span>
+              </label>
+            </div>
+
+            <div class="run-row">
+              <button id="btnRun" class="btn btn-primary btn-run">开始演化</button>
+              <button id="btnStep" class="btn btn-ghost">单步 +1 代</button>
+              <button id="btnReset" class="btn btn-ghost">重置</button>
+            </div>
+            <div class="run-row">
+              <button id="btnCsv" class="btn btn-ghost btn-small">导出全部数据 (CSV)</button>
+            </div>
+          </aside>
+
+          <!-- 图表区 -->
+          <div class="lab-boards">
+            <div class="board card">
+              <div class="board-head">
+                <h3>种群占比演化</h3>
+                <div id="legend" class="legend"></div>
+              </div>
+              <canvas id="stackChart" class="chart chart-stack" role="img" aria-label="各策略种群占比随代数变化的堆叠面积图"></canvas>
+            </div>
+            <div class="board card">
+              <div class="board-head">
+                <h3>每轮平均得分</h3>
+                <div class="board-stats">
+                  <span>当前代数 <b id="statGen" class="num">0</b></span>
+                  <span>存活策略 <b id="statAlive" class="num">7</b></span>
+                  <span>群体平均 <b id="statMean" class="num">0</b> 分/轮</span>
+                </div>
+              </div>
+              <canvas id="scoreChart" class="chart chart-line" role="img" aria-label="各策略每轮平均得分随代数变化的折线图"></canvas>
+            </div>
+            <div class="board card">
+              <div class="board-head">
+                <h3>实时战况</h3>
+              </div>
+              <div id="rankingBody" class="ranking"></div>
+              <div class="lab-log">
+                <div class="ctrl-title">演化大事记</div>
+                <ul id="eventLog" class="event-log"><li class="log-empty">按下「开始演化」后，这里会记录灭绝与称霸事件。</li></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="experiment-tips card">
+          <h3>建议做的四个实验</h3>
+          <ol>
+            <li><b>信任的脆弱：</b>初始只放「老好人」和「掠夺者」，看背叛如何在合作者尸体上狂欢，然后自我崩溃。</li>
+            <li><b>互惠的崛起：</b>复刻 1980 锦标赛配置，看「以牙还牙」如何靠不欺负人也不被人欺负登顶。</li>
+            <li><b>嘈杂的世界：</b>把噪声调到 10%，看「以牙还牙」如何被误会拖入互相报复，而「宽恕者」存活得更好。</li>
+            <li><b>合作的崩塌条件：</b>把 R 降到 2（此时 2R ≤ T），看整个生态滑向背叛的深渊——合作的存续是有条件的。</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 策略图鉴 ================= -->
+    <section id="strategies" class="section">
+      <div class="container">
+        <header class="section-head">
+          <p class="kicker">Part 3 · 策略图鉴</p>
+          <h2>七位参赛选手</h2>
+        </header>
+        <div id="strategyCards" class="strategy-grid"></div>
+      </div>
+    </section>
+
+    <!-- ================= 亲自上场 ================= -->
+    <section id="play" class="section section--play">
+      <div class="container">
+        <header class="section-head">
+          <p class="kicker">Part 4 · 亲自上场</p>
+          <h2>换你坐在牌桌前</h2>
+          <p class="section-sub">选择一个对手，和它对弈 20 轮。体会一下「面对不同性格的策略，最优打法完全不同」。</p>
+        </header>
+
+        <div class="mg-grid">
+          <div class="card mg-side">
+            <label class="ctrl-title" for="mgOppSelect">选择你的对手</label>
+            <select id="mgOppSelect" class="mg-select"></select>
+            <p id="mgOppDesc" class="mg-opp-desc"></p>
+            <div class="mg-scoreboard">
+              <div class="mg-score you"><span>你</span><b id="mgMyScore" class="num">0</b></div>
+              <div class="mg-score opp"><span id="mgOppNameLabel">对手</span><b id="mgOppScore" class="num">0</b></div>
+            </div>
+            <p id="mgRound" class="mg-round">第 1 / 20 轮 · 等待你出招</p>
+            <div class="mg-actions">
+              <button id="mgCoop" class="btn btn-coop">合作</button>
+              <button id="mgDefect" class="btn btn-defect">背叛</button>
+            </div>
+            <button id="mgRestart" class="btn btn-ghost btn-small">重新开局</button>
+          </div>
+
+          <div class="card mg-board">
+            <div class="mg-last" id="mgLast" aria-live="polite">选择合作或背叛，开始第一轮。</div>
+            <div id="mgHistory" class="mg-history"></div>
+            <div id="mgResult" class="mg-result" hidden></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 演化启示 ================= -->
+    <section id="insights" class="section">
+      <div class="container">
+        <header class="section-head">
+          <p class="kicker">Part 5 · 演化启示</p>
+          <h2>模拟想告诉你的四件事</h2>
+        </header>
+        <div class="insight-grid">
+          <article class="insight">
+            <span class="insight-no">01</span>
+            <h3>善良不是软弱，是长期主义</h3>
+            <p>锦标赛冠军「以牙还牙」从不主动背叛。短视策略赢下的是每一局，输掉的是整个未来。</p>
+          </article>
+          <article class="insight">
+            <span class="insight-no">02</span>
+            <h3>可持续的合作需要还击能力</h3>
+            <p>老好人式的无条件合作无法演化稳定——它吸引掠夺者，直到生态被背叛者淹没。宽容要有牙齿。</p>
+          </article>
+          <article class="insight">
+            <span class="insight-no">03</span>
+            <h3>误会比恶意更容易瓦解信任</h3>
+            <p>在 10% 噪声下，两个「以牙还牙」会因一次失误陷入死循环互殴。世界嘈杂时，懂得原谅的策略更有生命力。</p>
+          </article>
+          <article class="insight">
+            <span class="insight-no">04</span>
+            <h3>合作是有条件的化学反应</h3>
+            <p>当 2R ≤ T（合作的复利跑不赢背叛的诱惑），任何策略都救不了合作。制度设计的本质，就是调整收益矩阵。</p>
+          </article>
+        </div>
+        <div class="reading card">
+          <h3>想读更多？</h3>
+          <p>
+            Robert Axelrod《<em>合作的进化</em>（The Evolution of Cooperation）》——本页模拟背后的原始思想来源；
+            延伸可看 Dawkins《自私的基因》中关于 ESS 的章节，以及 Nowak 的五条合作演化规则。
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>演化实验场 · 一个用于学习 GitHub 与博弈论的纯静态教学项目 · MIT License</p>
+      <p class="foot-note">模拟为简化模型：每代重新对局、无空间结构与变异算子，结论定性与文献一致。</p>
+    </div>
+  </footer>
+
+  <script src="js/strategies.js"></script>
+  <script src="js/simulation.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/minigame.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
